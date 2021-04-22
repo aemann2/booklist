@@ -2,20 +2,13 @@ import React, { useState, useContext } from 'react';
 import { BookContext } from '../context/BookContext';
 
 const BookForm = () => {
-  const { dispatch } = useContext(BookContext);
+  const { addBook } = useContext(BookContext);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // we tell the dispatch the TYPE of action, and the PAYLOAD to be added to the state BY THE ACTION
-    dispatch({
-      type: 'ADD_BOOK',
-      book: {
-        title,
-        author,
-      },
-    });
+    addBook(title, author);
     setTitle('');
     setAuthor('');
   };

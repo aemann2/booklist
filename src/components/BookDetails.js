@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { BookContext } from '../context/BookContext';
 
-const BookDetails = ({ book, key }) => {
-  const { removeBook } = useContext(BookContext);
+const BookDetails = ({ book }) => {
+  const { dispatch } = useContext(BookContext);
   return (
-    <li key={key} onClick={() => removeBook(book.id)}>
+    <li
+      // we're using id: as a key because we're looking for action.id in reducer
+      onClick={() => dispatch({ type: 'REMOVE_BOOK', id: book.id })}
+    >
       <div className='title'>{book.title}</div>
       <div className='title'>{book.author}</div>
     </li>
